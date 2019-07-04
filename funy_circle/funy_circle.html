@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>funy_circle</title>
+</head>
+<body>
+<canvas id="canvas" width="1368px" height="768" style="border: green 1px "></canvas>
+</body>
+<script>
+    function Circle(x, y, radius) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+    }
+
+    function createCircle() {
+        let ctx = document.getElementById('canvas').getContext('2d');
+        let circle = new Circle(500, 500, 80);
+        //ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+    }
+
+    function createRandomCircle() {
+        let ctx = document.getElementById('canvas').getContext('2d');
+        let radius = Math.floor(Math.random() * 80);
+        let circle = new Circle(500, 500, radius);
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.closePath()
+    }
+
+    function createCircleAtRandomPlace() {
+        let ctx = document.getElementById('canvas').getContext('2d');
+        let x = Math.random() * window.innerWidth;
+        let y = Math.random() * window.innerHeight;
+        let circle = new Circle(x, y, 80);
+        ctx.beginPath()
+        ctx.arc(x, y, circle.radius, 0, 2 * Math.PI);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+    }
+
+    function createMultipleCircle() {
+        for (let i = 1; i < 30; i++) {
+            createCircleAtRandomPlace()
+        }
+
+    }
+
+    createMultipleCircle();
+
+</script>
+</html>

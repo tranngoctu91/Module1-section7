@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rectangle</title>
+</head>
+<body>
+
+</body>
+<script>
+    let Rectangle = function (width, length) {
+        this.width = width;
+        this.length = length;
+        this.getPerimeter = function () {
+            return (width + length) * 2;
+
+        };
+        this.getArea = function () {
+            return width * length;
+
+        };
+
+    };
+    rec1 = new Rectangle(5, 2);
+    alert(rec1.getPerimeter());
+    alert(rec1.getArea());
+</script>
+</html>
