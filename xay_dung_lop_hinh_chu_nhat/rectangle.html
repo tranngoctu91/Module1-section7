@@ -5,7 +5,7 @@
     <title>rectangle</title>
 </head>
 <body>
-
+<canvas id="mycanvas" width="2000" height="1500" style="border: 10px solid green ;"></canvas>
 </body>
 <script>
     let Rectangle = function (width, length) {
@@ -19,10 +19,36 @@
             return width * length;
 
         };
+        this.setWidth = function (width) {
+            this.width = width;
+        };
+        this.setLength = function (length) {
+            this.length = length;
+        };
+        this.getWidth = function () {
+            return this.width;
+        };
+
+        this.getLength = function () {
+            return this.length
+        };
+
+        this.drawRec = function () {
+            let ctx = document.getElementById('mycanvas').getContext('2d');
+            ctx.beginPath();
+            ctx.rect(200, 200, width, length);
+            ctx.strokeStyle = "red";
+            ctx.stroke();
+
+        }
+
 
     };
-    rec1 = new Rectangle(5, 2);
-    alert(rec1.getPerimeter());
-    alert(rec1.getArea());
+
+    rec1 = new Rectangle(1010, 100);
+    rec1.setWidth(100000);
+    rec1.getWidth();
+    rec1.drawRec();
+
 </script>
 </html>
