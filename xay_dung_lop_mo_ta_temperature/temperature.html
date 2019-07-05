@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tempperature</title>
+</head>
+<body>
+
+</body>
+<script>
+    let Temperature = function (celsius) {
+        this.celsius = celsius;
+        this.convert_to_Kelvin = function () {
+            return celsius + 273.15;
+        };
+        this.convert_to_Fahrenheit = function () {
+            return (celsius * 1.8) + 32;
+        };
+
+    };
+    let temperature1 = new Temperature(25);
+    alert("Fahrenheit: " + temperature1.convert_to_Fahrenheit()
+        + " & Kelvin: " + temperature1.convert_to_Kelvin())
+
+</script>
+</html>
