@@ -3,17 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <title>mobile</title>
+    <style>
+        .mobile {
+            background-color: green;
+            color: white;
+            height: 150px;
+            width: 300px;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-
+<div class="mobile"><h2>SAMSUNG</h2>
+    <button onclick="ssPower()">SS_POWER</button>
+    <br>
+    <input type="text" id="samsung_input" placeholder="Text here">
+    <button onclick="ssSendMS()">SS_SEND</button>
+    <br>
+    <span>Outbox:</span> <span id="ssung_outbox"></span><br>
+    <span>Inbox:</span> <span id="ssung_inbox"></span>
+</div>
+<div class="mobile"><h2>I PHONE</h2>
+    <button onclick="ipPower()">IP_POWER</button>
+    <br>
+    <input type="text" id="iphone_input" placeholder="Text here">
+    <button onclick="ipSendMS()">IP_SEND</button>
+    <br>
+    <span>Outbox:</span> <span id="iphone_outbox"></span><br>
+    <span>Inbox:</span> <span id="iphone_inbox"></span>
+</div>
 </body>
 <script>
-    let Mobile = function (battery) {
+    let Mobile = function (name, battery) {
+        this.name = name;
         this.battery = battery;
-        this.draft =draft;
+        this.message = '';
+        this.inbox = [];
+        this.outbox = [];
+        this.status = true;
+        this.noti = "";
+        this.writeMessage = function (message) {
+            if (this.status === true) {
+                this.message = message;
+                this.outbox.push(this.message);
+                this.battery--;
+            }
+        };
+
+        this.sendMessage = function (phone) {
+            if (phone.status === true) {
+                phone.inbox.push(this.message);//
+                this.battery--;
+            }
+        };
+        this.getInbox = function () {
+            return this.inbox;
+        };
+        this.getOutbox = function () {
+            return this.outbox;
+        };
+        this.powerSwitch = function () {
+            this.status =!this.status;
+            if (this.status){
+                this.noti = 'power on';
+            } else {
+                this.noti = 'power off';
+            }
+
+        }
+        this.getNoti = function () {
+            return this.noti;
+        }
+    };
+    let samsung = new Mobile('samsung', 100);
+    let iphone = new Mobile('Iphone', 100);
+    let ssung_message = document.getElementById('samsung_input');
+    let iphone_message = document.getElementById('iphone_input');
 
 
+    function ssPower() {
+        samsung.powerSwitch();
+        alert(samsung.getNoti());
 
     }
+
+    function ipPower() {
+        iphone.powerSwitch();
+        alert(iphone.status);
+
+    }
+
+    function ssSendMS() {
+
+        samsung.writeMessage(ssung_message.value);
+        samsung.sendMessage(iphone);
+        document.getElementById('ssung_outbox').innerHTML = samsung.outbox[samsung.outbox.length - 1];
+        document.getElementById('iphone_inbox').innerHTML = samsung.outbox[samsung.outbox.length - 1];
+    }
+
+    function ipSendMS() {
+
+        iphone.writeMessage(iphone_message.value);
+        iphone.sendMessage(samsung);
+        document.getElementById('iphone_outbox').innerHTML = iphone.outbox[iphone.outbox.length - 1];
+        document.getElementById('ssung_inbox').innerHTML = iphone.outbox[iphone.outbox.length - 1];
+    }
+
 </script>
 </html>
