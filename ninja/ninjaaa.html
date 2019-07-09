@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ninjaaa</title>
+</head>
+<body>
+<canvas id="canvas" width="1368px" height="768" style="border: 10px solid green "></canvas>
+</body>
+<script>
+    let Ninja = function (x, y, speed) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        //this.img = '';
+        this.ninjaOnload = function () {
+            let ctx = document.getElementById('canvas').getContext('2d');
+            ctx.beginPath();
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+        };
+        this.ninjaMoveup = function () {
+            let ctx = document.getElementById('canvas').getContext('2d');
+            ctx.beginPath();
+            this.y -= this.speed;
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+        };
+        this.ninjaMovedown = function () {
+            let ctx = document.getElementById('canvas').getContext('2d');
+            ctx.beginPath();
+            this.y += this.speed;
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+        };
+        this.ninjaMoveleft = function () {
+            let ctx = document.getElementById('canvas').getContext('2d');
+            ctx.beginPath();
+            this.x -= this.speed;
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+        };
+        this.ninjaMoveright = function () {
+            let ctx = document.getElementById('canvas').getContext('2d');
+            ctx.beginPath();
+            this.x += this.speed;
+            ctx.rect(this.x, this.y, 100, 100);
+            ctx.strokeStyle = 'red';
+            ctx.stroke();
+
+        }
+    };
+    let ninja_1 = new Ninja(600, 300, 50);
+    window.onload = ninja_1.ninjaOnload();
+
+    function moveSelection(move) {
+        switch (move.keyCode) {
+            case 38:
+                ninja_1.ninjaMoveup();
+                break;
+            case 40:
+                ninja_1.ninjaMovedown();
+                break;
+            case 39:
+                ninja_1.ninjaMoveright();
+                break;
+            case 37:
+                ninja_1.ninjaMoveleft();
+                break;
+
+        }
+
+    }
+
+    window.addEventListener('keydown', moveSelection);
+</script>
+</html>

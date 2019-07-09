@@ -51,7 +51,7 @@
         };
 
         this.sendMessage = function (phone) {
-            if (phone.status === true) {
+            if (phone.status) {
                 phone.inbox.push(this.message);//
                 this.battery--;
             }
@@ -70,7 +70,7 @@
                 this.noti = 'power off';
             }
 
-        }
+        };
         this.getNoti = function () {
             return this.noti;
         }
